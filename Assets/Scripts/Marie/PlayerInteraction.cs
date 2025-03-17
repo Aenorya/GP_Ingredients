@@ -77,10 +77,6 @@ public class PlayerInteraction : MonoBehaviour
             else if (other.transform.CompareTag("Interactive"))
             {
                 Interactive interactive = other.GetComponent<Interactive>();
-                if (!interactive)
-                {
-                    return;
-                }
                 //if interaction doesn't need key object or interaction key object is in inventory
                 bool hasRequiredItems = _inventory.HasEveryItem(interactive.requiredItems);
                 
@@ -124,7 +120,6 @@ public class PlayerInteraction : MonoBehaviour
     private void DisableInteractive()
     {
         _possibleInteractive.GetComponent<SphereCollider>().enabled = false;
-        _possibleInteractive.tag = "Untagged";
         Destroy(_possibleInteractive);
         SetInteraction(InteractionType.None);
     }
